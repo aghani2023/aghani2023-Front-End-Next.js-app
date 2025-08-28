@@ -1,9 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Todo List App - Frontend
 
-## Getting Started
+A modern, responsive Todo List application built with Next.js, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## Features
 
+- Create, edit, delete, and toggle completion of tasks
+- Color-coded task categories (red, blue, green, yellow, purple)
+- Responsive design with modern UI/UX
+- Real-time task management with backend API integration
+- TypeScript for type safety and better development experience
+
+## Prerequisites
+
+- Node.js 18.0 or higher
+- npm, yarn, pnpm, or bun package manager
+- Backend API server running (separate repository)
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd aghani2023-Front-End-Next.js-app-main
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+3. Set up environment variables:
+```bash
+cp env.example .env.local
+```
+
+Edit `.env.local` and configure:
+```env
+NEXT_PUBLIC_API_BASE_URL=http://localhost:5000/api
+```
+
+**Note**: Make sure your backend server is running at the specified URL before starting the frontend.
+
+## Development
+
+Start the development server:
 ```bash
 npm run dev
 # or
@@ -14,23 +60,93 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev` - Start development server with hot reload
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/                 # Next.js App Router pages
+│   ├── create/         # Create task page
+│   ├── edit/[id]/      # Edit task page
+│   └── page.tsx        # Home page with task list
+├── components/          # Reusable UI components
+│   ├── TaskCard.tsx    # Individual task display
+│   └── TaskForm.tsx    # Task creation/editing form
+└── lib/                # Utility functions and API
+    └── api.ts          # Backend API integration
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Backend API Requirements
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This frontend expects a backend API with the following endpoints:
 
-## Deploy on Vercel
+- `GET /api/tasks` - Retrieve all tasks
+- `POST /api/tasks` - Create a new task
+- `PUT /api/tasks/:id` - Update an existing task
+- `DELETE /api/tasks/:id` - Delete a task
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Task object structure:
+```typescript
+interface Task {
+  id: string;
+  title: string;
+  color: string;
+  completed: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `NEXT_PUBLIC_API_BASE_URL` | Backend API base URL | `http://localhost:5000/api` |
+
+## Building for Production
+
+1. Build the application:
+```bash
+npm run build
+```
+
+2. Start the production server:
+```bash
+npm run start
+```
+
+## Technologies Used
+
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **HTTP Client**: Axios
+- **Notifications**: React Hot Toast
+- **State Management**: React Hooks (useState, useEffect)
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run linting: `npm run lint`
+5. Submit a pull request
+
+## License
+
+This project is part of a take-home task assessment.
